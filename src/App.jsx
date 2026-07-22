@@ -1,5 +1,6 @@
 import "./App.css";
 import { Banner } from "./Componentes/Banner";
+import { CardEvento } from "./Componentes/CardEvento";
 import { FormularioDeEvento } from "./Componentes/FormularioDeEvento";
 import { Tema } from "./Componentes/Tema";
 
@@ -12,11 +13,11 @@ function App() {
   const temas = [
     {
       id: 1,
-      nome: "front-end",
+      nome: "Front-End",
     },
     {
       id: 2,
-      nome: "Back-end",
+      nome: "Back-End",
     },
     {
       id: 3,
@@ -24,15 +25,24 @@ function App() {
     },
     {
       id: 4,
-      nome: "inteligencia artificial",
+      nome: "inteligencia Artificial",
     },
     {
       id: 5,
-      nome: "data science",
+      nome: "Data Science",
     },
     {
       id: 6,
-      nome: "cloud",
+      nome: "Cloud",
+    },
+  ];
+
+  const eventos = [
+    {
+      capa: "https://raw.githubusercontent.com/viniciosneves/tecboard-assets/refs/heads/main/imagem_1.png",
+      tema: temas[0],
+      data: new Date(),
+      titulo: "Mulheres no front",
     },
   ];
 
@@ -41,12 +51,18 @@ function App() {
       <header>
         <img src="/logo.png?" alt="imagem-de-logo-tipo" />
       </header>
-      <Banner/>
-      <FormularioDeEvento />
-      <section>
-        <Tema tema={temas[0]} />
-      </section>
-      <section>
+      <Banner />
+      <FormularioDeEvento temas={temas} />
+      {temas.map(function (item) {
+        return (
+          <section key={item.id}>
+            <Tema tema={item} />
+            <CardEvento evento={eventos[0]} />
+          </section>
+        );
+      })}
+
+      {/*<section>
         <Tema tema={temas[1]} />
       </section>
       <section>
@@ -60,7 +76,7 @@ function App() {
       </section>
       <section>
         <Tema tema={temas[5]} />
-      </section>
+      </section>*/}
     </main>
   );
 }
